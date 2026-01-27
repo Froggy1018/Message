@@ -1,0 +1,35 @@
+*{
+    font-family:'Courier New', Courier, monospace ;
+}
+
+body{
+    background-color: antiquewhite;
+    padding: 20px;
+    align-content: center;
+}
+
+#box{
+    margin-left: 33% ;
+    background-image: url("https://i.ibb.co/NdZZLzgQ/Screenshot-2026-01-27-153944.png");
+    background-size: cover;
+    border-radius: 10px;
+    text-align: center;
+    width: 500px;
+    height: 313px;
+
+    h1{
+        padding-top: 135px;
+    }
+    button{
+        border-radius: 10px;
+        padding: 10px 60px;
+        font-size: 20px;
+        border: none;
+
+    }
+    button:hover{
+        background-color: lightgray;
+        cursor: pointer;
+    }
+
+}
