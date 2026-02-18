@@ -10,8 +10,10 @@
     <body>
         <div id="letter">
             <div id="stuff"> 
-                <form>
+                <form id="form">
                     <h1>Your Message</h1>
+                    <label id="from">From:</label>
+                    <input type="text" id="from" name="from" required placeholder="Who are you?"><br><br> 
                     <label id="to">To: </label>
                         <select type="dropbox" required id="who" name="who">
                             <option value="class">Class</option>
@@ -19,8 +21,8 @@
                             <option value="Mr.E">Mr. E</option>
                             <option value="Mrs.Kawada">Mrs. Kawada</option>
                     </select><br><br>
-                    <label id="classmate name">Who: </label>
-                    <input type="text" id="CN" name="CN" placeholder="Add a name"><br><br>
+                    <label for="classmate_name">Who: </label>
+                    <input type="text" id="classmate_name" name="CN" placeholder="Add a name"><br><br>
                     <label id="message">Your Message:</label><br>
                     <textarea id="message" name="message" rows="4" cols="50" placeholder="Message here!" required></textarea><br>
                     <h5 style="color:red">*disclaimer*<br><br> No one other than the intended person and the maker will see the message<br><br>
