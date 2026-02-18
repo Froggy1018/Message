@@ -13,6 +13,6 @@ document.addEventListener('DOMContentLoaded', function(){
             method: 'POST',
             mode: 'no-cors',
             body: data
-        })
-    })
-})
+        });
+    });
+});
