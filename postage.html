@@ -2,14 +2,48 @@
 <html lang="en">
     <head>
         <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" type="text/css" href="style.css">
         <title>Message</title>
-
+        <style>
+            @media (max-width: 768px) {
+                #stuff {
+                    padding: 20px !important;
+                }
+                
+                form input, form select, form textarea {
+                    font-size: 16px !important;
+                    width: 100% !important;
+                    max-width: 100% !important;
+                    box-sizing: border-box !important;
+                }
+                
+                button {
+                    width: 100% !important;
+                    font-size: 16px !important;
+                }
+                
+                #successMessage {
+                    margin: 15px !important;
+                    padding: 30px !important;
+                }
+                
+                h1 {
+                    font-size: 24px !important;
+                }
+            }
+        </style>
     </head>    
 
     <body>
         <div id="letter">
             <div id="stuff"> 
+                <div id="successMessage" style="display: none; text-align: center; padding: 40px; background-color: #d4edda; border: 2px solid #28a745; border-radius: 8px; margin: 20px;">
+                    <h2 style="color: #28a745;">✓ Message Submitted Successfully!</h2>
+                    <p style="font-size: 16px; color: #155724;">Your message has been sent and will be delivered on graduation day.</p>
+                    <button onclick="location.reload()" style="margin-top: 20px; padding: 10px 20px; background-color: #28a745; color: white; border: none; border-radius: 5px; cursor: pointer; font-size: 16px;">Send Another Message</button>
+                </div>
+
                 <form id="form" action="https://formspree.io/f/mkovzrrz" method="POST">
                     <h1>Your Message</h1>
                     <label id="from">From:</label>
@@ -22,7 +56,7 @@
                             <option value="Mrs.Kawada">Mrs. Kawada</option>
                     </select><br><br>
                     <label for="classmate_name">Who: </label>
-                    <input type="text" id="classmate_name" name="CN" placeholder="Add a name"><br><br>
+                    <input type="text" id="classmate_name" name="classmate_name" placeholder="Add a name"><br><br>
                     <label id="message">Your Message:</label><br>
                     <textarea id="message" name="message" rows="4" cols="50" placeholder="Message here!" required></textarea><br>
                     <h5 style="color:red">*disclaimer*<br><br> No one other than the intended person and the maker will see the message<br><br>
@@ -32,4 +66,36 @@
             </div>
         </div>
     </body>
+
+    <script>
+        document.getElementById('form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Create FormData from the form
+            const formData = new FormData(this);
+            
+            // Add redirect to same page
+            formData.append('_next', window.location.href);
+            
+            // Submit to Formspree
+            fetch(this.action, {
+                method: 'POST',
+                body: formData,
+                headers: {
+                    'Accept': 'application/json'
+                }
+            }).then(response => {
+                if (response.ok) {
+                    // Hide form and show success message
+                    document.getElementById('form').style.display = 'none';
+                    document.getElementById('successMessage').style.display = 'block';
+                } else {
+                    alert('Error submitting form. Please try again.');
+                }
+            }).catch(error => {
+                alert('Error submitting form. Please try again.');
+                console.error('Error:', error);
+            });
+        });
+    </script>
 </html>
